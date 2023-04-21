@@ -1,7 +1,5 @@
 package model
 
-import "strconv"
-
 type cell struct {
 	opened          bool
 	blackHole       bool
@@ -14,11 +12,4 @@ func (c *cell) turnToBlackHole() {
 
 func (c *cell) addNeighbour() {
 	c.neighboursCount++
-}
-
-func (c *cell) String() string {
-	if c.blackHole {
-		return "*"
-	}
-	return strconv.Itoa(c.neighboursCount)
 }

@@ -32,6 +32,10 @@ func (b *Board) IsOpened(x, y int) bool {
 func (b *Board) Open(x, y int) {
 	// TODO: check if it's the first opened cell and rebuild board in case of we hit black hole.
 	// TODO: It should not be possible to loose with the first move
+
+	if outsideOfBoard(x, y, b.size) {
+		return
+	}
 	c := &b.cells[x][y]
 	if c.opened {
 		return
@@ -55,22 +59,12 @@ func (b *Board) GetNeighboursCount(x, y int) int {
 	return b.cells[x][y].neighboursCount
 }
 
-func (b *Board) String() string {
-	r := ""
-	for y := 0; y < b.size; y++ {
-		for x := 0; x < b.size; x++ {
-			r += b.cells[x][y].String()
-			if x != b.size-1 {
-				r += " "
-			}
-		}
-		r += "\n"
-	}
-	return r
+func outsideOfBoard(x, y, size int) bool {
+	return x < 0 || x >= size || y < 0 || y >= size
 }
 
 func (b *Board) openCell(x, y int) {
-	if x < 0 || x >= b.size || y < 0 || y >= b.size || b.cells[x][y].opened {
+	if outsideOfBoard(x, y, b.size) || b.cells[x][y].opened {
 		return
 	}
 	b.cells[x][y].opened = true
@@ -140,7 +134,7 @@ func NewBoard(cp CoordinatesProvider, size, blackHoleCount int) (Board, error) {
 }
 
 func markAsBlackHoleNeighbour(cells [][]cell, x, y int) {
-	if x < 0 || x >= len(cells) || y < 0 || y >= len(cells) {
+	if outsideOfBoard(x, y, len(cells)) {
 		return
 	}
 	cells[x][y].addNeighbour()
