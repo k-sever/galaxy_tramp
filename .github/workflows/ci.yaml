@@ -1,0 +1,39 @@
+name: Run tests
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build
+        id: build
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          target: build
+          cache-from: type=gha
+          cache-to: type=gha
+
+      - name: Test
+        id: test
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          target: test
+          cache-from: type=gha
+          cache-to: type=gha
