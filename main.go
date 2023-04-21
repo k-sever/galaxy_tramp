@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/k_sever/galaxy_tramp/cli"
+	"github.com/k-sever/galaxy_tramp/cli"
 	"log"
 	"os"
 )
 
 func main() {
-	// TODO: add custom mode
+	// TODO: add custom mode with arbitrary board size and holes count
 	boardSize := 8
 	blackHolesCount := 10
 	if len(os.Args) > 1 {

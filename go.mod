@@ -1,4 +1,4 @@
-module github.com/k_sever/galaxy_tramp
+module github.com/k-sever/galaxy_tramp
 
 go 1.20
 

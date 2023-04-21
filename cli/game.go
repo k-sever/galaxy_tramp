@@ -2,7 +2,7 @@ package cli
 
 import (
 	"github.com/gdamore/tcell/v2"
-	"github.com/k_sever/galaxy_tramp/internal/pkg/model"
+	"github.com/k-sever/galaxy_tramp/internal/pkg/model"
 	"os"
 	"strconv"
 	"time"
