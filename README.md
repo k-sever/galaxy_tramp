@@ -24,3 +24,11 @@ You can specify one of 3 modes - easy(default), medium or hard. I.e.:
 ```shell
 docker run -it galaxy_tramp:latest medium
 ```
+
+## TODO:
+- [ ] add end-to-end test that launches executable and tests the game via virtual client
+- [ ] handle first miss scenario (can't loose on the first hit)
+- [ ] add custom configs mode
+- [ ] prettify terminal interface
+- [ ] add flag functionality (flag cells that user supposes to be black holes)
+- [ ] add timer
